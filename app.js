@@ -26,7 +26,7 @@ app.get('/', function(req, res){
   res.end(JSON.stringify({
     code: 200,
     message: "already to"
-  }))
+  }, null, 2))
 });
 
 // Listen on port 5000
