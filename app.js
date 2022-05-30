@@ -51,7 +51,7 @@ app.get('/', function(req, res){
 		})
 }
 
-res.send("ok")
+//res.send("ok")
 test().catch(console.error)
 });
 
