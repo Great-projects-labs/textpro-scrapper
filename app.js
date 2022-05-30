@@ -21,10 +21,12 @@ const port = process.env.PORT || 5000
 
 // app.use('/', newsRouter)
 // app.use('/article', newsRouter)
+
 app.get('/', function(req, res){
-   app.get('/', function(req, res){
-     res.send("Hello world!");
-   });
+  res.end(JSON.stringify({
+    code: 200,
+    message: "already to"
+  }))
 });
 
 // Listen on port 5000
