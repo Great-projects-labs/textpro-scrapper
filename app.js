@@ -36,7 +36,7 @@ app.get('/pornhub', function(req, res) {
     const result = {}
     function sendResult (content) { $.end(JSON.stringify(content, null, 2)) }
     
-    if (Object.keys(req.query).filter(e => e !== 'text' || e !== 'text2').length > 0) {
+    if (Object.values(req.query).filter(e => e !== 'text' || e !== 'text2').length > 0) {
       sendResult({ status: "bad request", message: "query yang tidak diharapkan!" })
       return
     }
