@@ -52,8 +52,8 @@ app.get('/pornhub', function(req, res) {
     await page
       .goto(url, { waitUntil: "networkidle2" })
       .then(async () => {
-	 await page.type("#text-0", 'code')
-         await page.type("#text-1", 'hub')
+	 await page.type("#text-0", text)
+         await page.type("#text-1", text2)
          await page.click("#submit")
          await new Promise(resolve => setTimeout(resolve, 3000))
 	 const element = await page.$(
