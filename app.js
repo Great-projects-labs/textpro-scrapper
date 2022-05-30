@@ -22,37 +22,8 @@ const port = process.env.PORT || 5000
 // app.use('/', newsRouter)
 // app.use('/article', newsRouter)
 
-app.get('/', function(req, res){
-  async function test () {
-  const browser = await puppeteer.launch({
-		headless: false,
-	});
-	const page = await browser.newPage();
-	await page
-	  .goto("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", {
-				waitUntil: "networkidle2"
-		})
-		.then(async () => {
-				await page.type("#text-0", 'code');
-				await page.type("#text-1", 'hub');
-				await page.click("#submit");
-				await new Promise(resolve => setTimeout(resolve, 3000));
-				const element = await page.$(
-					'div[class="btn-group"] > a'
-					);
-				const url = await (await element.getProperty("href")).jsonValue();
-				res.end(JSON.stringify({
-				  response: {
-				    url: url,
-				    code: 200
-				  }
-				}, null, 2))
-				browser.close();
-		})
-}
-
-//res.send("ok")
-test().catch(console.error)
+app.get('/', function(req, res) {
+  res.send('200')
 });
 
 // Listen on port 5000
