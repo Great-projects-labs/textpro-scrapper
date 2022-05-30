@@ -40,6 +40,7 @@ app.get('/pornhub', function(req, res) {
       sendResult({ status: "bad request", message: "query yang tidak diharapkan!" })
       return
     }*/
+sendResult(req.query)
     if (!text) {
       sendResult({ status: "bad request", message: "text nya mana?" })
       return
