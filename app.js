@@ -24,7 +24,7 @@ const port = process.env.PORT || 5000
 
 app.get('/', function(req, res) {
   async function test($) {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({ headless: false, args: ['--no-sandbox'] })
 
     $.send("200")
   }
