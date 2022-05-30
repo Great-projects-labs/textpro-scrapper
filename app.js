@@ -23,10 +23,8 @@ const port = process.env.PORT || 5000
 // app.use('/article', newsRouter)
 
 app.get('/', function(req, res) {
-  const puppeteer = require('puppeteer');
-
-  (async () => {
-    const browser = await puppeteer.launch();
+  ;(async () => {
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://github.com');
     await page.screenshot({ path: 'example.png' });
