@@ -25,7 +25,25 @@ const port = process.env.PORT || 5000
 app.get('/', function(req, res) {
   async function test($) {
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
-
+    const page = await browser.newPage()
+    await page
+      .goto("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", {
+         waitUntil: "networkidle2"
+      })
+      .then(async () => {
+	 await page.type("#text-0", 'code')
+         await page.type("#text-1", 'hub')
+         await page.click("#submit")
+         await new Promise(resolve => setTimeout(resolve, 3000))
+	 const element = await page.$(
+           'div[class="btn-group"] > a'
+         );
+	 const url = await (await element.getProperty("href")).jsonValue()
+	 $.send(url)		
+	 browser.close();
+      })
+      .catch(err => console.log(err))
+    
     $.send("200")
   }
   test(res).catch(console.error)
