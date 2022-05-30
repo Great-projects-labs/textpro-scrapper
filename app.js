@@ -23,13 +23,21 @@ const port = process.env.PORT || 5000
 // app.use('/article', newsRouter)
 
 app.get('/', function(req, res) {
+  res.send('Internal error')
+})
+app.get('/pornhub', function(req, res) {
+  const text = req.query.text
+  const text2 = req.query.text2
+
   async function test($) {
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
     const page = await browser.newPage()
+    const url = "https://textpro.me/pornhub-style-logo-online-generator-free-977.html"
+    const result = {}
+    function sendResult (content) { $.end(JSON.stringify(content), null, 2) }
+ 
     await page
-      .goto("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", {
-         waitUntil: "networkidle2"
-      })
+      .goto(url, { waitUntil: "networkidle2" })
       .then(async () => {
 	 await page.type("#text-0", 'code')
          await page.type("#text-1", 'hub')
@@ -39,12 +47,10 @@ app.get('/', function(req, res) {
            'div[class="btn-group"] > a'
          );
 	 const url = await (await element.getProperty("href")).jsonValue()
-	 $.send(url)		
+	 sendResult(req.query)
 	 browser.close();
       })
       .catch(err => console.log(err))
-    
-    $.send("200")
   }
   test(res).catch(console.error)
 });
