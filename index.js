@@ -1,13 +1,15 @@
-const puppeteer = require('puppeteer')
-const app = require('express')
-const PORT = process.env.PORT || 5000
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 5000
 
-app.get('/', (req, res) => {
-  /*res.send(JSON.stringify({
-    status: "ok",
-    code: 200,
-    message: "already to use"
-  }, null, 2))*/
-  res.send("ok");
+app.listen(port, () => {
+    console.log('server is listening on port 5000')
 })
-app.listen(PORT, () => console.log('App listen on PORT: %s', PORT))
+
+app.get('/api/products', (req, res) => {
+    res.json([
+        { name: 'iPhone', price: 800 },
+        { name: 'iPad', price: 650 },
+        { name: 'iWatch', price: 750 }
+    ])
+})
