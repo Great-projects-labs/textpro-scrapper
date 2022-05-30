@@ -34,8 +34,21 @@ app.get('/pornhub', function(req, res) {
     const page = await browser.newPage()
     const url = "https://textpro.me/pornhub-style-logo-online-generator-free-977.html"
     const result = {}
-    function sendResult (content) { $.end(JSON.stringify(content), null, 2) }
- 
+    function sendResult (content) { $.end(JSON.stringify(content, null, 2)) }
+    
+    if (Object.keys(req.query).filter(e => e !== 'text' || e !== 'text2').length > 0) {
+      sendResult({ status: "bad request", message: "query yang tidak diharapkan!" })
+      return
+    }
+    if (!text) {
+      sendResult({ status: "bad request", message: "text nya mana?" })
+      return
+    }
+    if (!text2) {
+      sendResult({ status: "bad request", message: "text2 nya mana?" })
+      return
+    }
+    
     await page
       .goto(url, { waitUntil: "networkidle2" })
       .then(async () => {
@@ -47,7 +60,10 @@ app.get('/pornhub', function(req, res) {
            'div[class="btn-group"] > a'
          );
 	 const url_result = await (await element.getProperty("href")).jsonValue()
-	 sendResult(req.query)
+         result.status = "ok"
+         result.code = 200
+         result.result = { url: url_result }
+	 sendResult(result)
 	 browser.close();
       })
       .catch(err => console.log(err))
