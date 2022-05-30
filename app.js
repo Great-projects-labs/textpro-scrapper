@@ -51,7 +51,7 @@ app.get('/', function(req, res){
 		})
 }
 
-test.catch(console.err)
+test.catch(console.error)
 });
 
 // Listen on port 5000
