@@ -23,14 +23,10 @@ const port = process.env.PORT || 5000
 // app.use('/article', newsRouter)
 
 app.get('/', function(req, res) {
-  ;(async () => {
-    const browser = await puppeteer.launch({ headless: false });
-    const page = await browser.newPage();
-    await page.goto('https://github.com');
-    await page.screenshot({ path: 'example.png' });
-    res.send('ok)
-    await browser.close();
-  })();
+  function test($) {
+    $.send("200")
+  }
+test(res)
 });
 
 // Listen on port 5000
