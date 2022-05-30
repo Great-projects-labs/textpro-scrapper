@@ -46,7 +46,7 @@ app.get('/pornhub', function(req, res) {
 	 const element = await page.$(
            'div[class="btn-group"] > a'
          );
-	 const url = await (await element.getProperty("href")).jsonValue()
+	 const url_result = await (await element.getProperty("href")).jsonValue()
 	 sendResult(req.query)
 	 browser.close();
       })
