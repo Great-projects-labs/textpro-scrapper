@@ -36,14 +36,6 @@ app.get('/pornhub', function(req, res) {
     const result = {}
     function sendResult (content) { $.end(JSON.stringify(content, null, 2)) }
     
-    if (Object.values(req.query).length == 0) {
-      sendResult({ status: "bad request", message: "mengharapkan query!")
-      return
-    }
-    if (Object.values(req.query).filter(e => e !== 'text' || e !== 'text2').length > 0) {
-      sendResult({ status: "bad request", message: "query yang tidak diharapkan!" })
-      return
-    }
     if (!text) {
       sendResult({ status: "bad request", message: "text nya mana?" })
       return
@@ -66,7 +58,8 @@ app.get('/pornhub', function(req, res) {
 	 const url_result = await (await element.getProperty("href")).jsonValue()
          result.status = "ok"
          result.code = 200
-         result.result = { url: url_result }
+         result.input = { text, text2 }
+         result.output = { url: url_result }
 	 sendResult(result)
 	 browser.close();
       })
