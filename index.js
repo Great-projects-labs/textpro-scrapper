@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
 const puppeteer = require('puppeteer')
 const PORT = process.env.PORT || 5000
 const XGET = app.get.bind(app)
@@ -27,9 +28,11 @@ async function getUrl($) {
   return result
 }
 function sendData ($, content) {
-  $.end(JSON.stringify(content, null, 2))
+  //$.end(JSON.stringify(content, null, 2))
+  $.send(content)
 }
 
+app.use(bodyParser.json())
 XGET('/', (req, res, next) => {
   sendData(res, {
     message: "Tidak ada layanan apapun disini, butuh pertolongan?",
