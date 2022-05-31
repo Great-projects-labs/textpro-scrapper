@@ -73,7 +73,7 @@ XGET('/pornhub', async (req, res, next) => {
       data: { url: await getUrl(req.query) }
     }
 
-  return sendData(res, result)
+  res.send(result)
 })
 XUSE((req, res, next) => {
   sendData(res.status(404), {
