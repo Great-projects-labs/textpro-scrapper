@@ -34,7 +34,7 @@ function sendData ($, content) {
 
 app.use(bodyParser.json())
 XGET('/', (req, res, next) => {
-  sendData(res, {
+  sendData(res.status(503), {
     message: "Tidak ada layanan apapun disini, butuh pertolongan?",
     author: {
       wa: "wa.me/6285867400659",
@@ -48,7 +48,7 @@ XGET('/pornhub', async (req, res, next) => {
   let result = {}
 
   if (unexq.length > 0)
-    return sendData(res, {
+    return sendData(res.status(400), {
       status: "Bad request",
       code: 400,
       message: `Query { ${unexq.join(', ')} } tidak diharapkan!`
@@ -73,7 +73,7 @@ XGET('/pornhub', async (req, res, next) => {
       data: { url: await getUrl(req.query) }
     }
 
-  return sendData(res, result)
+  return sendData(text && text2 ? res : res.status(400), result)
 })
 XUSE((req, res, next) => {
   sendData(res.status(404), {
