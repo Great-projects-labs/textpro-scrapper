@@ -67,7 +67,7 @@ XGET('/pornhub', (req, res, next) => {
       status: "Ok",
       code: 200,
       message: "Nih pornhubnya!",
-      data: { url: '' }
+      data: { url: await getUrl(req.query) }
     }
 
   return sendData(res, result)
