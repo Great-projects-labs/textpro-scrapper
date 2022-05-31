@@ -30,7 +30,7 @@ function sendData ($, content) {
   $.end(JSON.stringify(content, null, 2))
 }
 
-XGET('/', (req, res, next) => {
+XGET('/', async (req, res, next) => {
   sendData(res, {
     message: "Tidak ada layanan apapun disini, butuh pertolongan?",
     author: {
