@@ -28,8 +28,8 @@ async function getUrl($) {
   return result
 }
 function sendData ($, content) {
-  //$.end(JSON.stringify(content, null, 2))
-  $.send(content)
+  $.end(JSON.stringify(content, null, 2))
+  //$.send(content)
 }
 
 app.use(bodyParser.json())
@@ -73,7 +73,7 @@ XGET('/pornhub', async (req, res, next) => {
       data: { url: await getUrl(req.query) }
     }
 
-  res.send(result)
+  sendData(result)
 })
 XUSE((req, res, next) => {
   sendData(res.status(404), {
