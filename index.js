@@ -30,7 +30,7 @@ function sendData ($, content) {
   $.end(JSON.stringify(content, null, 2))
 }
 
-XGET('/', async (req, res, next) => {
+XGET('/', (req, res, next) => {
   sendData(res, {
     message: "Tidak ada layanan apapun disini, butuh pertolongan?",
     author: {
@@ -39,7 +39,7 @@ XGET('/', async (req, res, next) => {
     }
   })
 })
-XGET('/pornhub', (req, res, next) => {
+XGET('/pornhub', async (req, res, next) => {
   const { text, text2 } = req?.query
   const unexq = Object.keys(req?.query || {}).filter(e => e !== 'text' && e !== 'text2')
   let result = {}
