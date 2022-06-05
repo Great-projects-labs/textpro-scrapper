@@ -15,7 +15,7 @@ const q = {
   }
 }
 
-async function getUrl($, config = { text2: false, url: '' }) {
+async function getUrl($, config = { text2: false, url: '', textpro: true }) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   const url = config.url
@@ -108,7 +108,7 @@ XGET('/neon', async (req, res, next) => {
       status: "Ok",
       code: 200,
       message: "Nih neonnya!",
-      data: { url: await getUrl(req.query, { text2: true, url: q.textpro[getPath] }) }
+      data: { url: await getUrl(req.query, { text2: true, url: q.photooxy[getPath] }) }
     }
 
   return sendData(text ? res : res.status(400), result)
