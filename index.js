@@ -18,13 +18,14 @@ const q = {
 async function getUrl($, config = { text2: false, url: '' }) {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
+  const url = config.url
   let result = ''
 
   await page
     .goto(url, { waitUntil: "networkidle2" })
     .then(async () => {
        await page.type("#text-0", $.text)
-       if (text2)
+       if (config?.text2)
          await page.type("#text-1", $.text2)
        await page.click("#submit")
        await new Promise(resolve => setTimeout(resolve, 3000))
