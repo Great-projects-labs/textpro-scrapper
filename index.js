@@ -108,7 +108,7 @@ XGET('/neon', async (req, res, next) => {
       status: "Ok",
       code: 200,
       message: "Nih neonnya!",
-      data: { url: await getUrl(req.query, { text2: true, url: q.photooxy[getPath] }) }
+      data: { url: await getUrl(req.query, { url: q.photooxy[getPath] }) }
     }
 
   return sendData(text ? res : res.status(400), result)
