@@ -2,6 +2,9 @@
 ### Forked from ztfcode
 #### Installation
 ```$ git clone this-repo```
+
 ```$ cd repo-name```
+
 ```$ npm install```
+
 ```$ node .```
